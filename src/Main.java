@@ -3,7 +3,6 @@ public class Main {
         String login = "sdek7_sp";
         String password = "SSD7asd_S8";
         String confirmPassword = "SSD7asd_S8";
-
         examination(login, password, confirmPassword);
         System.out.println("OK");
     }
