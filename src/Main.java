@@ -3,7 +3,6 @@ public class Main {
         String login = "sdek7_sp";
         String password = "SSD7asd_S8";
         String confirmPassword = "SSD7asd_S8";
-
         examination(login, password, confirmPassword);
         System.out.println("OK");
     }
@@ -11,23 +10,14 @@ public class Main {
     public static boolean examination(String login, String password, String confirmPassword) {
 
         try {
-            if (login.length() > 20 || compare(login)) {
-                throw new WrongLoginException();
-            }
-            if (password.length() > 19 || compare(password)) {
-                throw new WrongPasswordException();
-            }
-            if (!password.equals(confirmPassword)) {
-                throw new WrongPasswordException();
-            }
-            System.out.println("return true");
-            return true;
+            return checkLoginAndPassword(login, password, confirmPassword);
+
 
         } catch (WrongLoginException ex) {
-            System.out.println("Логин больше 20 символовю. Введите корректный логин");
+            System.out.println("Логин больше 20 символовю или содержит недопустимые символы. Введите корректный логин");
 
         } catch (WrongPasswordException e) {
-            System.out.println("Пароль больше 20 символовю. Введите корректный пароль");
+            System.out.println("Пароль больше 20 символовю, или содержит недопустимые символы. Введите корректный пароль");
 
         } finally {
             System.out.println("Проверка завершена");
@@ -35,6 +25,20 @@ public class Main {
 
         System.out.println("return false;");
         return false;
+    }
+
+    private static boolean checkLoginAndPassword(String login, String password, String confirmPassword) throws WrongLoginException, WrongPasswordException {
+        if (login.length() > 20 || compare(login)) {
+            throw new WrongLoginException();
+        }
+        if (password.length() > 19 || compare(password)) {
+            throw new WrongPasswordException();
+        }
+        if (!password.equals(confirmPassword)) {
+            throw new WrongPasswordException();
+        }
+        System.out.println("return true");
+        return true;
     }
 
     public static boolean compare(String name) {
